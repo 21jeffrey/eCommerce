@@ -4,17 +4,29 @@ import { ShoppingCartIcon, UserIcon, Bars3Icon, XMarkIcon } from '@heroicons/rea
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
+  const isLoggedIn = Boolean(localStorage.getItem('token'));
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.reload();
+  };
   const Navbar = [
     {
       name: "Cart",
       link: "/cart",
       icon: ShoppingCartIcon,
     },
-    {
-      name: "Login",
-      link: "/login",
-      icon: UserIcon,
-    },
+    isLoggedIn
+      ? {
+          name: "Logout",
+          link: "#",
+          icon: UserIcon,
+          onClick: handleLogout,
+        }
+      : {
+          name: "Login",
+          link: "/login",
+          icon: UserIcon,
+        },
   ];
 
   return (
@@ -24,7 +36,7 @@ const Header = () => {
           <div className="flex items-center justify-between py-3 md:py-5 md:block">
             {/* Logo */}
             <Link to="/" className="text-3xl text-white font-semibold tracking-wider">
-              JShop
+              Second Chance
             </Link>
             {/* Toggle button */}
             <div className="md:hidden">
@@ -50,14 +62,27 @@ const Header = () => {
             <ul className="items-center justify-center space-y-8 md:flex md:space-x-6 md:space-y-0">
               {Navbar.map((item, index) => (
                 <li key={index} className="text-white">
-                  <Link
-                    href={item.link}
-                    className="flex items-center text-gray-200 hover:text-gray-400 text-[1.15rem] font-medium tracking-wider"
-                    onClick={() => setNavbar(false)}
-                  >
-                    <item.icon className="h-6 w-6 mr-2" />
-                    {item.name}
-                  </Link>
+                  {item.name === "Logout" ? (
+                    <button
+                      className="flex items-center text-gray-200 hover:text-gray-400 text-[1.15rem] font-medium tracking-wider bg-transparent border-none cursor-pointer"
+                      onClick={() => {
+                        setNavbar(false);
+                        item.onClick();
+                      }}
+                    >
+                      <item.icon className="h-6 w-6 mr-2" />
+                      {item.name}
+                    </button>
+                  ) : (
+                    <Link
+                      to={item.link}
+                      className="flex items-center text-gray-200 hover:text-gray-400 text-[1.15rem] font-medium tracking-wider"
+                      onClick={() => setNavbar(false)}
+                    >
+                      <item.icon className="h-6 w-6 mr-2" />
+                      {item.name}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>

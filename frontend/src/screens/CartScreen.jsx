@@ -42,8 +42,8 @@ function CartScreen() {
               <div key={item.product} className="flex items-center border-b py-4">
                 <img src={item.image} alt={item.name} className="w-20 h-20 object-cover rounded" />
                 <div className="ml-4 flex-grow">
-                  <Link to={`/product/${item.product}`} className="font-semibold text-lg">{item.name}</Link>
-                  <p className="text-gray-600">${item.price}</p>
+                  <Link to={`/product/${item.product}`} className="font-semibold text-lg">{item.name} (Donated/Used)</Link>
+                  <p className="text-gray-600">Ksh {item.price}</p>
                 </div>
                 <select
                   className="border border-gray-300 rounded px-2 py-1"
@@ -71,16 +71,16 @@ function CartScreen() {
           <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
           <p className="flex justify-between text-gray-700">
             <span>Subtotal:</span> 
-            <span>${cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</span>
+            <span>Ksh {cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0).toFixed(2)}</span>
           </p>
           
           <p className="flex justify-between text-gray-700">
             <span>Tax Estimate:</span> 
-            <span>${(cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0) * 0.08).toFixed(2)}</span>
+            <span>Ksh {(cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0) * 0.08).toFixed(2)}</span>
           </p>
           <h3 className="flex justify-between text-lg font-semibold mt-4">
             <span>Order Total:</span> 
-            <span>${((cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0) + 5) * 1.08).toFixed(2)}</span>
+            <span>Ksh {((cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0) + 5) * 1.08).toFixed(2)}</span>
           </h3>
           <button 
             className="w-full mt-6 bg-blue-600 text-white py-2 rounded-lg text-lg font-semibold hover:bg-blue-700 transition"

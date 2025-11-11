@@ -56,9 +56,9 @@ const ProductScreen = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <img src={product.image} alt={product.name} className="w-full rounded-lg shadow-md" />
         <div>
-          <h1 className="text-2xl font-bold mb-2">{product.name}</h1>
+          <h1 className="text-2xl font-bold mb-2">{product.name} (Donated/Used)</h1>
           <p className="text-gray-600">{product.description}</p>
-          <p className="text-lg font-semibold text-gray-900 mt-4">${product.price}</p>
+          <p className="text-lg font-semibold text-gray-900 mt-4">Ksh {product.price}</p>
           <p className={`mt-2 ${product.countInStock > 0 ? 'text-green-600' : 'text-red-600'}`}>
             {product.countInStock > 0 ? 'In Stock' : 'Out of Stock'}
           </p>

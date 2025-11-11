@@ -5,7 +5,7 @@ import axios from 'axios'
 const HomeScreen = () => {
   return (
     <div>
-        <h2 className="text-2xl font-bold tracking-tight text-gray-900 ">Latest Products</h2>
+        <h2 className="text-2xl font-bold tracking-tight text-gray-900 text-center ">Latest Products</h2>
         <Products/>
     </div>
   )
